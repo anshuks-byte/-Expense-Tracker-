@@ -1,0 +1,603 @@
+/* ==========================================================================
+   CSS CUSTOM VARIABLES & SAGE GREEN PREMIUM PALETTE
+   ========================================================================== */
+:root {
+    /* Color Scheme Reference from image_f77a8d.png */
+    --color-primary-sage: #2d4a3e;        /* Deep Premium Sage Green */
+    --color-primary-sage-light: #eef3f0;  /* Soft Green Hue Highlight background */
+    --color-accent-badge: #e2ede7;        /* Pill Label Active Background */
+    --color-badge-text: #233e33;          /* Contrast Text on Sage Pills */
+    
+    /* Standard Layout Surfaces */
+    --bg-app: #f8faf9;                     /* Soft Off-White Clean Workspace Background */
+    --bg-surface: #ffffff;
+    --text-main: #1f2937;                 /* Charcoal Primary Body Text */
+    --text-muted: #6b7280;
+    --border-color: #e5e7eb;
+    
+    /* Visual Banner Vector Theme variables */
+    --bg-hero-gradient: linear-gradient(135deg, #f1f5f3 0%, #e2ede7 100%);
+    
+    /* Transaction Indicators */
+    --color-expense: #b91c1c;
+    --color-income: #15803d;
+    --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+    --radius: 10px;
+    --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="dark"] {
+    /* Premium Dark Ecosystem */
+    --bg-app: #111827;
+    --bg-surface: #1f2937;
+    --text-main: #f9fafb;
+    --text-muted: #9ca3af;
+    --border-color: #374151;
+    
+    --color-primary-sage: #a7f3d0;
+    --color-primary-sage-light: #1f2937;
+    --color-accent-badge: #374151;
+    --color-badge-text: #34d399;
+    
+    --bg-hero-gradient: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+    --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+}
+
+/* Base Engine Rules */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    background-color: var(--bg-app);
+    color: var(--text-main);
+    transition: var(--transition);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ==========================================================================
+   NAVIGATION DESIGNS (UPDATED BRAND BACKGROUND COLOR)
+   ========================================================================== */
+.navbar {
+    background-color: var(--color-primary-sage); /* Styled with premium deep sage */
+    color: #ffffff;
+    padding: 1rem 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: var(--transition);
+}
+
+[data-theme="dark"] .navbar {
+    background-color: var(--bg-surface);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.nav-container {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+[data-theme="dark"] .nav-logo {
+    color: var(--color-primary-sage);
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+/* Toggle icon adjustments for light-on-dark contrast */
+.navbar .btn-icon {
+    color: rgba(255, 255, 255, 0.8);
+}
+.navbar .btn-icon:hover {
+    color: #ffffff;
+}
+
+[data-theme="dark"] .navbar .btn-icon {
+    color: var(--text-muted);
+}
+
+/* ==========================================================================
+   HERO GRAPHIC POST-HEADER LAYOUT
+   ========================================================================== */
+.app-hero-banner {
+    max-width: 1140px;
+    width: 100%;
+    margin: 1.5rem auto 0 auto;
+    padding: 0 1.5rem;
+}
+
+.hero-content {
+    background: var(--bg-hero-gradient);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 2rem;
+    align-items: center;
+}
+
+.hero-text-side h1 {
+    font-size: 1.75rem;
+    color: var(--text-main);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+}
+
+.hero-text-side p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+.hero-graphic-side {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner-svg {
+    width: 100%;
+    max-width: 360px;
+    height: auto;
+}
+
+@media (max-width: 768px) {
+    .hero-content {
+        grid-template-columns: 1fr;
+        padding: 1.5rem;
+        text-align: center;
+    }
+    .hero-graphic-side {
+        display: none;
+    }
+}
+
+/* ==========================================================================
+   DASHBOARD STRUCTURE (STACKED SYSTEM ARRAYS)
+   ========================================================================== */
+.dashboard-container {
+    max-width: 1140px;
+    width: 100%;
+    margin: 1.5rem auto;
+    padding: 0 1.5rem;
+    flex: 1;
+}
+
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Form and History stacked cleanly downwards */
+.content-vertical-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Card Foundations */
+.card {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    box-shadow: var(--card-shadow);
+    transition: var(--transition);
+}
+
+.section-title-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.section-title-wrapper h2 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.icon-sage {
+    color: var(--color-primary-sage);
+    font-size: 1.1rem;
+}
+
+/* Metric Variations */
+.metric-card h3 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--text-muted);
+    margin-bottom: 0.4rem;
+}
+
+.metric-card p {
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+
+.net-balance {
+    background-color: var(--color-primary-sage-light);
+    border-color: var(--color-accent-badge);
+}
+.net-balance p { color: var(--text-main); }
+.income-display p { color: var(--color-income); }
+.expense-display p { color: var(--color-expense); }
+
+/* ==========================================================================
+   INPUT SYSTEM COMPONENTS
+   ========================================================================== */
+.form-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1rem;
+}
+
+.form-grid-three {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+@media (max-width: 640px) {
+    .form-row, .form-grid-three {
+        grid-template-columns: 1fr;
+    }
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-bottom: 1.2rem;
+}
+
+label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+input, select {
+    padding: 0.65rem 0.75rem;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-surface);
+    color: var(--text-main);
+    border-radius: 6px;
+    font-size: 0.9rem;
+    outline: none;
+    transition: var(--transition);
+}
+
+input:focus, select:focus {
+    border-color: var(--color-primary-sage);
+}
+
+.form-actions-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 0.5rem;
+}
+
+/* ==========================================================================
+   INTERACTIVE RECENT LEDGER ENTRIES
+   ========================================================================== */
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.8rem;
+}
+
+.filter-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.filter-tabs {
+    display: flex;
+    background-color: var(--color-primary-sage-light);
+    padding: 0.2rem;
+    border-radius: 6px;
+}
+
+.tab-btn {
+    padding: 0.35rem 0.85rem;
+    border: none;
+    background: none;
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    border-radius: 4px;
+    transition: var(--transition);
+}
+
+.tab-btn.active {
+    background-color: var(--bg-surface);
+    color: var(--color-primary-sage);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.select-sm {
+    padding: 0.35rem 0.5rem;
+    font-size: 0.8rem;
+    width: auto;
+}
+
+.transaction-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* Individual Stack Row Configuration */
+.transaction-item {
+    display: grid;
+    grid-template-columns: 2.5fr 1.5fr 1.2fr 1fr;
+    align-items: center;
+    padding: 0.9rem 1rem;
+    background-color: var(--bg-surface);
+    border-bottom: 1px solid var(--border-color);
+    transition: var(--transition);
+}
+
+.transaction-item:hover {
+    background-color: var(--color-primary-sage-light);
+}
+
+.tx-main-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.tx-icon-pouch {
+    width: 32px;
+    height: 32px;
+    background-color: var(--color-primary-sage-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primary-sage);
+    font-size: 0.85rem;
+}
+
+.tx-desc {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-main);
+}
+
+.tx-date-stamp {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+/* Category Badge Pills */
+.tx-badge-pill {
+    justify-self: start;
+    padding: 0.25rem 0.65rem;
+    background-color: var(--color-accent-badge);
+    color: var(--color-badge-text);
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.tx-val {
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: right;
+    padding-right: 1rem;
+}
+
+.val-income { color: var(--color-income); }
+.val-expense { color: var(--color-expense); }
+
+.btn-trash-action {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    text-align: right;
+    transition: var(--transition);
+    font-size: 0.9rem;
+}
+
+.btn-trash-action:hover {
+    color: #dc2626;
+}
+
+@media (max-width: 640px) {
+    .transaction-item {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
+        padding: 1rem;
+    }
+    .tx-badge-pill, .tx-date-stamp {
+        grid-column: 1;
+    }
+    .tx-val, .btn-trash-action {
+        grid-column: 2;
+        text-align: right;
+    }
+}
+
+/* ==========================================================================
+   BUTTONS AND ACTIONS
+   ========================================================================== */
+.btn {
+    padding: 0.55rem 1.25rem;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 0.85rem;
+    cursor: pointer;
+    border: none;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+}
+
+.btn-primary {
+    background-color: var(--color-primary-sage);
+    color: #ffffff;
+}
+[data-theme="dark"] .btn-primary {
+    color: #0f172a;
+}
+
+/* Secondary Button Inverted for better navigation contrast */
+.btn-secondary {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+[data-theme="dark"] .btn-secondary {
+    background-color: var(--color-primary-sage-light);
+    color: var(--color-primary-sage);
+    border: none;
+}
+
+.btn-icon {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+}
+
+.btn-text {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    margin-top: 1rem;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+/* ==========================================================================
+   DYNAMIC NAME INITIAL AVATAR ICON
+   ========================================================================== */
+.user-avatar-initial {
+    width: 34px;
+    height: 34px;
+    background-color: #ffffff;
+    color: var(--color-primary-sage);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
+}
+[data-theme="dark"] .user-avatar-initial {
+    background-color: var(--color-primary-sage);
+    color: #0f172a;
+}
+
+/* Authentication Modal Overlay */
+.auth-container {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background-color: rgba(17, 24, 39, 0.7);
+    backdrop-filter: blur(3px);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 2000;
+    padding: 1rem;
+}
+
+.auth-card {
+    background-color: var(--bg-surface);
+    border-radius: var(--radius);
+    padding: 2.25rem;
+    width: 100%; max-width: 380px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+.auth-card h2 { font-size: 1.35rem; margin-bottom: 0.25rem; }
+.auth-card p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem; }
+.auth-card .form-group { text-align: left; }
+.btn-block { width: 100%; }
+
+/* ==========================================================================
+   MINIMAL SYSTEM FOOTER ARRANGEMENT (UPDATED BRAND COLOR)
+   ========================================================================== */
+.app-footer {
+    background-color: var(--color-primary-sage); /* Matches the premium navbar */
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 1.25rem 2rem;
+    margin-top: 3rem;
+    transition: var(--transition);
+}
+
+[data-theme="dark"] .app-footer {
+    background-color: var(--bg-surface);
+    border-top: 1px solid var(--border-color);
+}
+
+.footer-container {
+    max-width: 1140px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.footer-container p {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7); /* Subtle white text for readability */
+    letter-spacing: 0.02em;
+}
+
+[data-theme="dark"] .footer-container p {
+    color: var(--text-muted);
+}
+
+.footer-heart {
+    color: #ff4b5c; /* Slightly brighter red to pop against dark green background */
+    margin: 0 0.15rem;
+}
